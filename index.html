@@ -28,12 +28,15 @@
             --gray-light: #0b0d10;
             --gray-medium: #1b1f24;
             --gray-dark: #c9d1d9;
+            --primary-dark: #2a9d8f;
+            --primary: #38b2ac;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
         }
 
         body {
@@ -42,17 +45,14 @@
             line-height: 1.6;
             background-color: var(--white);
             overflow-x: hidden;
-            width: 100vw;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
+            position: relative;
+            min-height: 100vh;
+            touch-action: manipulation; /* Improve touch responsiveness */
         }
 
         html {
-            overflow: hidden;
-            width: 100vw;
-            height: 100vh;
+            overflow-x: hidden;
+            width: 100%;
         }
 
         h1, h2, h3, h4 {
@@ -64,10 +64,11 @@
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 15px;
         }
 
         section {
-            padding: 80px 0;
+            padding: 60px 0;
         }
 
         .btn {
@@ -86,7 +87,7 @@
             box-shadow: 0 4px 15px rgba(2, 100, 101, 0.2);
         }
 
-        .btn:hover {
+        .btn:hover, .btn:active {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(2, 100, 101, 0.3);
         }
@@ -96,7 +97,7 @@
             transition: transform 0.3s ease;
         }
 
-        .btn:hover i {
+        .btn:hover i, .btn:active i {
             transform: translateX(5px);
         }
 
@@ -139,7 +140,7 @@
             border-radius: 50%;
             transition: background 0.2s ease, transform 0.2s ease;
         }
-        .theme-toggle:hover {
+        .theme-toggle:hover, .theme-toggle:active {
             background: rgba(255, 255, 255, 0.15);
             transform: translateY(-1px);
         }
@@ -153,16 +154,6 @@
             letter-spacing: 1px;
             display: flex;
             align-items: center;
-        }
-
-        .logo:before {
-            content: "";
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M18 3a1 1 0 0 1 .894 1.447L16.382 9H21a1 1 0 0 1 .894 1.447l-6 12A1 1 0 0 1 15 23H9a1 1 0 0 1-.894-1.447L14.618 13H3a1 1 0 0 1-.894-1.447l6-12A1 1 0 0 1 9 1h9z'/%3E%3C/svg%3E");
-            background-size: contain;
-            margin-right: 10px;
         }
 
         .nav-links {
@@ -184,7 +175,7 @@
             transition: all 0.3s ease;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links a:active {
             opacity: 1;
         }
 
@@ -199,7 +190,7 @@
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover:after {
+        .nav-links a:hover:after, .nav-links a:active:after {
             width: 100%;
         }
 
@@ -208,12 +199,14 @@
             cursor: pointer;
             font-size: 24px;
             color: var(--white);
+            padding: 5px;
+            z-index: 1001;
         }
 
         /* Hero Section with Better Video Positioning */
         .hero {
             height: 100vh;
-            min-height: 700px;
+            min-height: 600px;
             position: relative;
             display: flex;
             align-items: center;
@@ -260,7 +253,7 @@
             padding: 0 20px;
             max-width: 1500px;
             margin: 0 auto;
-            padding-top: 520px; /* Reduced to move heading up */
+            padding-top: 80px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -268,14 +261,14 @@
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
             line-height: 1.2;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             margin-bottom: 30px;
             opacity: 0.95;
             max-width: 700px;
@@ -315,13 +308,13 @@
         }
 
         .about h2 {
-            font-size: 36px;
+            font-size: 32px;
             color: var(--primary-dark);
             margin-bottom: 30px;
         }
 
         .about p {
-            font-size: 18px;
+            font-size: 16px;
             color: var(--black);
             margin-bottom: 20px;
             line-height: 1.8;
@@ -334,11 +327,11 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
         .section-header h2 {
-            font-size: 36px;
+            font-size: 32px;
             color: var(--primary-dark);
             margin-bottom: 15px;
         }
@@ -351,84 +344,67 @@
         }
 
         .section-header p {
-            font-size: 18px;
+            font-size: 16px;
             color: var(--gray-dark);
             max-width: 600px;
             margin: 0 auto;
         }
 
-        .collection-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .collection-card {
-            background-color: var(--white);
-            border-radius: 10px;
+        /* Individual collection layout */
+        .collection-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 60px;
+            background: var(--white);
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
-
-        .collection-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        
+        .collection-item:nth-child(even) {
+            flex-direction: row-reverse;
         }
-
-        .collection-img {
-            width: 100%;
-            height: 450px;
+        
+        .collection-content {
+            flex: 1;
+            padding: 30px;
+        }
+        
+        .collection-image {
+            flex: 1;
+            height: 400px;
             overflow: hidden;
-            position: relative;
         }
-
-        .collection-img img {
+        
+        .collection-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
-
-        .collection-card:hover .collection-img img {
-            transform: scale(1.1);
+        
+        .collection-item:hover .collection-image img {
+            transform: scale(1.05);
         }
-
-        .collection-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(2, 100, 101, 0.8), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 20px;
-            color: var(--white);
-        }
-
-        .collection-card:hover .collection-overlay {
-            opacity: 1;
-        }
-
-        .collection-info {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .collection-info h3 {
-            font-size: 22px;
+        
+        .collection-content h3 {
+            font-size: 24px;
             color: var(--primary-dark);
-            margin-bottom: 10px;
-        }
-
-        .collection-info p {
-            font-size: 16px;
-            color: var(--gray-dark);
             margin-bottom: 15px;
+        }
+        
+        .collection-content p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--gray-dark);
+            margin-bottom: 20px;
+        }
+        
+        .collection-price {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 20px;
         }
 
         /* Features Section */
@@ -449,48 +425,48 @@
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            gap: 20px;
         }
 
         .feature-card {
             background-color: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 10px;
-            padding: 30px;
+            padding: 25px;
             text-align: center;
             transition: all 0.3s ease;
         }
 
-        .feature-card:hover {
+        .feature-card:hover, .feature-card:active {
             transform: translateY(-10px);
             background-color: rgba(255, 255, 255, 0.2);
         }
 
         .feature-icon {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             background-color: var(--white);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
+            margin: 0 auto 15px;
             color: var(--primary-dark);
-            font-size: 28px;
+            font-size: 24px;
             transition: all 0.3s ease;
         }
 
-        .feature-card:hover .feature-icon {
+        .feature-card:hover .feature-icon, .feature-card:active .feature-icon {
             transform: scale(1.1);
         }
 
         .feature-card h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
+            font-size: 18px;
+            margin-bottom: 12px;
         }
 
         .feature-card p {
-            font-size: 16px;
+            font-size: 15px;
             opacity: 0.9;
         }
 
@@ -502,14 +478,15 @@
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
+            gap: 20px;
             margin-top: 40px;
         }
 
         .contact-card {
             text-align: center;
-            padding: 30px 20px;
+            padding: 25px 15px;
             transition: all 0.3s ease;
+            border-radius: 10px;
         }
         
         /* Make the entire contact card clickable */
@@ -517,7 +494,6 @@
             display: block;
             color: inherit;
             text-decoration: none;
-            border-radius: 10px;
         }
         
         /* Style inline links inside a contact card (e.g., multiple phone numbers) */
@@ -528,43 +504,43 @@
             margin-top: 6px;
             font-weight: 500;
         }
-        .contact-card a:hover {
+        .contact-card a:hover, .contact-card a:active {
             text-decoration: underline;
         }
 
-        .contact-card:hover {
+        .contact-card:hover, .contact-card:active {
             transform: translateY(-10px);
         }
 
         /* Modern Contact Icons */
         .contact-icon {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             background: linear-gradient(135deg, var(--primary-dark), var(--primary));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
+            margin: 0 auto 15px;
             color: var(--white);
-            font-size: 32px;
+            font-size: 28px;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(2, 100, 101, 0.2);
         }
 
-        .contact-card:hover .contact-icon {
+        .contact-card:hover .contact-icon, .contact-card:active .contact-icon {
             transform: translateY(-10px) scale(1.1);
             box-shadow: 0 10px 25px rgba(2, 100, 101, 0.3);
         }
 
         .contact-card h3 {
-            font-size: 20px;
+            font-size: 18px;
             color: var(--primary-dark);
             margin-bottom: 10px;
         }
 
         .contact-card p {
-            font-size: 16px;
+            font-size: 15px;
             color: var(--gray-dark);
         }
 
@@ -572,7 +548,7 @@
         .footer {
             background-color: var(--primary-dark);
             color: var(--white);
-            padding: 60px 0 30px;
+            padding: 40px 0 20px;
             text-align: center;
         }
 
@@ -583,102 +559,152 @@
 
         .footer-logo {
             font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            margin-bottom: 20px;
+            font-size: 24px;
+            margin-bottom: 15px;
             display: inline-block;
         }
 
         .footer-text {
             opacity: 0.8;
-            line-height: 1.8;
-            margin-bottom: 30px;
-            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-size: 15px;
         }
 
         .footer-social {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
         .footer-social a {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--white);
-            font-size: 20px;
+            font-size: 18px;
             transition: all 0.3s ease;
         }
 
-        .footer-social a:hover {
+        .footer-social a:hover, .footer-social a:active {
             background: var(--white);
             color: var(--primary-dark);
             transform: translateY(-3px);
         }
 
         .copyright {
-            font-size: 14px;
+            font-size: 13px;
             opacity: 0.6;
         }
 
+        /* Mobile Menu Styles */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
         /* Responsive Styles */
-        @media (max-width: 992px) {
+        @media (max-width: 1200px) {
             .hero h1 {
-                font-size: 2.8rem;
+                font-size: 2.2rem;
             }
             
-            section {
-                padding: 60px 0;
+            .collection-content {
+                padding: 25px;
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 50px 0;
+            }
+            
+            /* Collection item responsive */
+            .collection-item, 
+            .collection-item:nth-child(even) {
+                flex-direction: column;
+            }
+            
+            .collection-content, 
+            .collection-image {
+                width: 100%;
+            }
+            
+            .collection-image {
+                height: 350px;
+            }
+
             .nav-links {
                 position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
                 background-color: var(--primary-dark);
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                transition: all 0.5s ease;
+                transition: all 0.4s ease;
+                z-index: 999;
+                padding: 80px 20px 40px;
             }
 
             .nav-links.active {
-                left: 0;
+                right: 0;
             }
 
             .nav-links li {
                 margin: 15px 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 12px;
+                font-size: 18px;
             }
 
             .hamburger {
                 display: block;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .section-header h2 {
-                font-size: 32px;
+                z-index: 1000;
             }
         }
 
-        @media (max-width: 576px) {
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 500px;
+            }
+            
+            .hero-content {
+                padding-top: 100px;
+            }
+            
             .hero h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
             .hero p {
@@ -688,15 +714,110 @@
             .section-header h2 {
                 font-size: 28px;
             }
-
-            .collection-grid {
+            
+            .section-header p {
+                font-size: 15px;
+            }
+            
+            .collection-content {
+                padding: 20px;
+            }
+            
+            .collection-image {
+                height: 300px;
+            }
+            
+            .collection-content h3 {
+                font-size: 22px;
+            }
+            
+            .collection-content p {
+                font-size: 14px;
+            }
+            
+            .collection-price {
+                font-size: 18px;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 15px;
+            }
+            
+            .feature-grid {
                 grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
             }
             
             .contact-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 28px;
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            .section-header h2 {
+                font-size: 24px;
+            }
+            
+            .collection-content {
+                padding: 15px;
+            }
+            
+            .collection-image {
+                height: 250px;
+            }
+            
+            .about h2 {
+                font-size: 26px;
+            }
+            
+            .about p {
+                font-size: 14px;
+            }
+            
+            .logo {
+                font-size: 22px;
+            }
+            
+            .theme-toggle {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+                margin-left: 10px;
+            }
+            
+            .footer {
+                padding: 30px 0 15px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+            
+            .collection-content h3 {
+                font-size: 20px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
             }
         }
     </style>
@@ -708,7 +829,7 @@
             <a href="#" class="logo">Naura</a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
-                <li><a href#collections">Collections</a></li>
+                <li><a href="#collections">Collections</a></li>
                 <li><a href="#why-choose-us">Why Choose Us</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -719,6 +840,9 @@
         </div>
     </nav>
 
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
     <!-- Hero Section with Better Video Positioning -->
     <section class="hero" id="home">
         <div class="hero-video-container">
@@ -728,7 +852,7 @@
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>Naura Jewellery,Crafted for You</h1>
+            <h1>Naura Jewellery, Crafted for You</h1>
             <a href="#collections" class="btn">Explore Now <i>→</i></a>
         </div>
     </section>
@@ -749,66 +873,61 @@
     <section class="collections" id="collections">
         <div class="container">
             <div class="section-header">
-                <h2>Our Collections</h2>
+                <h2>New Launch</h2>
                 <div class="section-divider"></div>
                 <p>Explore our carefully curated collections, each designed to capture different facets of beauty and elegance</p>
             </div>
-            <div class="collection-grid">
-                <div class="collection-card">
-                    <div class="collection-img">
-                        <img src="pic1.jpg" alt="Rings">
-                        <div class="collection-overlay">
-                            <h3>Rings</h3>
-                            <p>Elegant rings for every occasion</p>
-                        </div>
-                    </div>
-                    <div class="collection-info">
-                        <h3>Rings</h3>
-                        <p>Elegant rings for every occasion</p>
-                        <a href="#" class="btn">View Collection</a>
-                    </div>
+            
+            <!-- Individual Collection Items -->
+            <div class="collection-item">
+                <div class="collection-content">
+                    <h3>Celestial Harmony</h3>
+                    <p>Inspired by the cosmos, this collection features intricate designs that capture the magic of the night sky. Each piece is crafted with precision to reflect the beauty of stars and celestial bodies.</p>
+                    <p>Perfect for evening events and special occasions where you want to shine as brightly as the stars.</p>
+                    <div class="collection-price">Starting at ₹12,999</div>
+                    <a href="#" class="btn">View Details</a>
                 </div>
-                <div class="collection-card">
-                    <div class="collection-img">
-                        <img src="pic2.jpg" alt="Necklaces">
-                        <div class="collection-overlay">
-                            <h3>Necklaces</h3>
-                            <p>Stunning necklaces to complement your style</p>
-                        </div>
-                    </div>
-                    <div class="collection-info">
-                        <h3>Necklaces</h3>
-                        <p>Stunning necklaces to complement your style</p>
-                        <a href="#" class="btn">View Collection</a>
-                    </div>
+                <div class="collection-image">
+                    <img src="pic1.jpg" alt="Celestial Harmony Collection">
                 </div>
-                <div class="collection-card">
-                    <div class="collection-img">
-                        <img src="pic3.jpg" alt="Earrings">
-                        <div class="collection-overlay">
-                            <h3>Earrings</h3>
-                            <p>Exquisite earrings for timeless beauty</p>
-                        </div>
-                    </div>
-                    <div class="collection-info">
-                        <h3>Earrings</h3>
-                        <p>Exquisite earrings for timeless beauty</p>
-                        <a href="#" class="btn">View Collection</a>
-                    </div>
+            </div>
+            
+            <div class="collection-item">
+                <div class="collection-content">
+                    <h3>Ocean Whisper</h3>
+                    <p>Drawing inspiration from the serene beauty of the ocean, this collection features flowing lines and aquatic motifs. The pieces capture the fluidity and grace of water in motion.</p>
+                    <p>Ideal for those who appreciate nature's elegance and want to carry a piece of the sea's tranquility with them.</p>
+                    <div class="collection-price">Starting at ₹15,499</div>
+                    <a href="#" class="btn">View Details</a>
                 </div>
-                <div class="collection-card">
-                    <div class="collection-img">
-                        <img src="pic4.jpg" alt="Bracelets">
-                        <div class="collection-overlay">
-                            <h3>Bracelets</h3>
-                            <p>Graceful bracelets for elegant wrists</p>
-                        </div>
-                    </div>
-                    <div class="collection-info">
-                        <h3>Bracelets</h3>
-                        <p>Graceful bracelets for elegant wrists</p>
-                        <a href="#" class="btn">View Collection</a>
-                    </div>
+                <div class="collection-image">
+                    <img src="pic2.jpg" alt="Ocean Whisper Collection">
+                </div>
+            </div>
+            
+            <div class="collection-item">
+                <div class="collection-content">
+                    <h3>Royal Heritage</h3>
+                    <p>This regal collection pays homage to traditional craftsmanship with designs that echo the grandeur of royal jewelry. Intricate patterns and premium materials create pieces fit for royalty.</p>
+                    <p>For those special occasions when you want to make a statement of elegance and sophistication.</p>
+                    <div class="collection-price">Starting at ₹22,999</div>
+                    <a href="#" class="btn">View Details</a>
+                </div>
+                <div class="collection-image">
+                    <img src="pic3.jpg" alt="Royal Heritage Collection">
+                </div>
+            </div>
+            
+            <div class="collection-item">
+                <div class="collection-content">
+                    <h3>Minimalist Essence</h3>
+                    <p>Less is more with our minimalist collection. These pieces focus on clean lines, geometric shapes, and understated elegance that complements any outfit without overwhelming it.</p>
+                    <p>Perfect for everyday wear and those who appreciate subtle sophistication in their accessories.</p>
+                    <div class="collection-price">Starting at ₹8,499</div>
+                    <a href="#" class="btn">View Details</a>
+                </div>
+                <div class="collection-image">
+                    <img src="pic4.jpg" alt="Minimalist Essence Collection">
                 </div>
             </div>
         </div>
@@ -911,50 +1030,26 @@
     </footer>
 
     <script>
-        // Prevent zooming and touch gestures
-        document.addEventListener('gesturestart', function(e) {
-            e.preventDefault();
-        });
-        
-        document.addEventListener('gesturechange', function(e) {
-            e.preventDefault();
-        });
-        
-        document.addEventListener('gestureend', function(e) {
-            e.preventDefault();
-        });
-
-        // Prevent double-tap zoom
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function(event) {
-            const now = (new Date()).getTime();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
-
-        // Prevent pinch zoom
-        document.addEventListener('touchmove', function(event) {
-            if (event.scale !== 1) {
-                event.preventDefault();
-            }
-        }, { passive: false });
-
         // Mobile Menu Toggle
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
         const themeToggle = document.getElementById('themeToggle');
 
-        hamburger.addEventListener('click', () => {
+        function toggleMobileMenu() {
             navLinks.classList.toggle('active');
+            mobileNavOverlay.classList.toggle('active');
             hamburger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-        });
+        }
+
+        hamburger.addEventListener('click', toggleMobileMenu);
+        mobileNavOverlay.addEventListener('click', toggleMobileMenu);
 
         // Close mobile menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                mobileNavOverlay.classList.remove('active');
                 hamburger.textContent = '☰';
             });
         });
@@ -1016,10 +1111,40 @@
             });
         });
 
-        // Set viewport to prevent zooming
-        const viewport = document.querySelector('meta[name=viewport]');
-        if (viewport) {
-            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover');
+        // Improved touch handling for mobile devices
+        document.addEventListener('touchstart', function() {
+            // Add any touch-specific initialization if needed
+        }, { passive: true });
+
+        // Prevent zooming and touch gestures
+        document.addEventListener('gesturestart', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+        
+        document.addEventListener('gesturechange', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+        
+        document.addEventListener('gestureend', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+
+        // Prevent double-tap zoom
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, { passive: false });
+
+        // Improved video loading for mobile
+        const heroVideo = document.querySelector('.hero-video-container video');
+        if (heroVideo) {
+            heroVideo.setAttribute('playsinline', '');
+            heroVideo.setAttribute('muted', '');
+            heroVideo.setAttribute('autoplay', '');
         }
     </script>
 </body>
