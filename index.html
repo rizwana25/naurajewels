@@ -325,13 +325,19 @@
             background-color: var(--gray-light);
         }
 
+        /* Make collections container tighter with no side padding */
+        .collections .container {
+            max-width: 1100px;
+            padding: 0;
+        }
+
         .section-header {
             text-align: center;
             margin-bottom: 40px;
         }
 
         .section-header h2 {
-            font-size: 32px;
+            font-size: 42px;
             color: var(--primary-dark);
             margin-bottom: 15px;
         }
@@ -353,8 +359,8 @@
         /* Individual collection layout */
         .collection-item {
             display: flex;
-            align-items: center;
-            margin-bottom: 60px;
+            align-items: stretch;
+            margin-bottom: 50px;
             background: var(--white);
             border-radius: 12px;
             overflow: hidden;
@@ -367,34 +373,39 @@
         
         .collection-content {
             flex: 1;
-            padding: 30px;
+            padding: 28px 28px;
         }
         
         .collection-image {
             flex: 1;
-            height: 400px;
+            height: auto;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
         }
         
         .collection-image img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            object-fit: contain;
             transition: transform 0.5s ease;
+            display: block;
         }
         
         .collection-item:hover .collection-image img {
-            transform: scale(1.05);
+            transform: none;
         }
         
         .collection-content h3 {
-            font-size: 24px;
+            font-size: 42px;
             color: var(--primary-dark);
             margin-bottom: 15px;
         }
         
         .collection-content p {
-            font-size: 15px;
+            font-size: 28px;
             line-height: 1.7;
             color: var(--gray-dark);
             margin-bottom: 20px;
@@ -653,7 +664,7 @@
             }
             
             .collection-image {
-                height: 350px;
+                height: auto;
             }
 
             .nav-links {
@@ -720,19 +731,21 @@
             }
             
             .collection-content {
+            
                 padding: 20px;
             }
             
             .collection-image {
-                height: 300px;
+                height: 350px;
             }
             
             .collection-content h3 {
-                font-size: 22px;
+                font-size: 72px;
+               
             }
             
             .collection-content p {
-                font-size: 14px;
+                font-size: 54px;
             }
             
             .collection-price {
@@ -881,10 +894,9 @@
             <!-- Individual Collection Items -->
             <div class="collection-item">
                 <div class="collection-content">
-                    <h3>Celestial Harmony</h3>
-                    <p>Inspired by the cosmos, this collection features intricate designs that capture the magic of the night sky. Each piece is crafted with precision to reflect the beauty of stars and celestial bodies.</p>
+                    <h3>Emerald Royale Bridal Set</h3>
+                    <p>Step into the spotlight with this majestic bridal set, crafted with layers of dazzling stones and rich emerald drops</p>
                     <p>Perfect for evening events and special occasions where you want to shine as brightly as the stars.</p>
-                    <div class="collection-price">Starting at ₹12,999</div>
                     <a href="#" class="btn">View Details</a>
                 </div>
                 <div class="collection-image">
@@ -895,9 +907,8 @@
             <div class="collection-item">
                 <div class="collection-content">
                     <h3>Ocean Whisper</h3>
-                    <p>Drawing inspiration from the serene beauty of the ocean, this collection features flowing lines and aquatic motifs. The pieces capture the fluidity and grace of water in motion.</p>
-                    <p>Ideal for those who appreciate nature's elegance and want to carry a piece of the sea's tranquility with them.</p>
-                    <div class="collection-price">Starting at ₹15,499</div>
+                    <p>Understated yet breathtaking — this necklace set is the definition of timeless charm. With delicate detailing, a graceful maang tikka, and matching earrings, it’s the perfect choice for receptions, festive nights, or when you want to exude effortless elegance.</p>
+                    <p>Designed for the bride who dares to shine, it adds unmatched grandeur and elegance to every wedding moment.</p>
                     <a href="#" class="btn">View Details</a>
                 </div>
                 <div class="collection-image">
@@ -908,9 +919,8 @@
             <div class="collection-item">
                 <div class="collection-content">
                     <h3>Royal Heritage</h3>
-                    <p>This regal collection pays homage to traditional craftsmanship with designs that echo the grandeur of royal jewelry. Intricate patterns and premium materials create pieces fit for royalty.</p>
-                    <p>For those special occasions when you want to make a statement of elegance and sophistication.</p>
-                    <div class="collection-price">Starting at ₹22,999</div>
+                    <p>Rule the occasion with this royal-inspired set, featuring twin-layer necklaces, a bold statement pendant, and emerald accents</p>
+                    <p>Perfect for weddings and high-profile events, it transforms your look into one of sophistication, power, and regal beauty.</p>
                     <a href="#" class="btn">View Details</a>
                 </div>
                 <div class="collection-image">
@@ -918,18 +928,6 @@
                 </div>
             </div>
             
-            <div class="collection-item">
-                <div class="collection-content">
-                    <h3>Minimalist Essence</h3>
-                    <p>Less is more with our minimalist collection. These pieces focus on clean lines, geometric shapes, and understated elegance that complements any outfit without overwhelming it.</p>
-                    <p>Perfect for everyday wear and those who appreciate subtle sophistication in their accessories.</p>
-                    <div class="collection-price">Starting at ₹8,499</div>
-                    <a href="#" class="btn">View Details</a>
-                </div>
-                <div class="collection-image">
-                    <img src="pic4.jpg" alt="Minimalist Essence Collection">
-                </div>
-            </div>
         </div>
     </section>
 
@@ -944,23 +942,26 @@
             <div class="feature-grid">
                 <div class="feature-card">
                     <div class="feature-icon">★</div>
-                    <h3>Authentic Craftsmanship</h3>
-                    <p>Each piece is meticulously handcrafted by skilled artisans with decades of experience.</p>
+                    <h3>Dual Options for Every Need </h3>
+                    <p>Whether you're looking for a timeless keepsake or a dazzling piece for one special day, we offer both purchase and rental options to suit your lifestyle and budget.
+                    </p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">✧</div>
-                    <h3>Premium Quality Materials</h3>
-                    <p>We use only the finest precious metals and genuine gemstones in every creation.</p>
+                    <h3>Affordable Luxury  
+                    </h3>
+                    <p>Rent premium jewellery at a fraction of the cost—or invest in pieces you’ll treasure forever. Either way, you get elegance without compromise.
+                    </p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">✦</div>
-                    <h3>Modern + Traditional Designs</h3>
-                    <p>Perfect blend of contemporary aesthetics with timeless traditional elements.</p>
+                    <h3>Curated Collections, Always Fresh </h3>
+                    <p> Our catalogue is constantly updated with trending designs and classic favourites. Choose what speaks to you—own it or borrow it.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">♥</div>
-                    <h3>Trusted by Customers</h3>
-                    <p>Over 10,000 satisfied customers trust us for their precious jewelry needs.</p>
+                    <h3>Seamless Experience</h3>
+                    <p> Easy browsing, secure checkout, and doorstep delivery. Plus, hassle-free returns for rentals and quality assurance for purchases.</p>
                 </div>
             </div>
         </div>
