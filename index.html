@@ -775,12 +775,16 @@
         .collection-item,
         .collection-item:nth-child(even) {
           flex-direction: row;
+          flex-wrap: nowrap;
+          align-items: stretch;
         }
 
         .collection-content,
         .collection-image {
           width: 50%;
-          flex: 0 0 50%;
+          flex: 1 1 50%;
+          max-width: 50%;
+          min-width: 0; /* allow text to wrap and prevent overflow */
         }
             
             .collection-content {
@@ -1020,7 +1024,7 @@
             
             <div class="collection-item">
                 <div class="collection-content">
-                    <h3>Ocean Whisper</h3>
+                    <h3>Victory Diamond Bridal Set-Ocean Whisper</h3>
             <p>
               Understated yet breathtaking — this necklace set is the definition
               of timeless charm. With delicate detailing, a graceful maang
@@ -1047,7 +1051,7 @@
             
             <div class="collection-item">
                 <div class="collection-content">
-                    <h3>Royal Heritage</h3>
+                    <h3>Victory Diamond Bridal Set</h3>
             <p>
               Rule the occasion with this royal-inspired set, featuring
               twin-layer necklaces, a bold pendant
@@ -1129,8 +1133,7 @@
                 <h2>Get in Touch</h2>
                 <div class="section-divider"></div>
           <p>
-            We'd love to hear from you. Reach out to us for any inquiries,
-            custom orders, or just to say hello
+            We'd love to hear from you. Reach out to us for any inquiries, or just to say hello
           </p>
             </div>
             <div class="contact-grid">
@@ -1165,7 +1168,7 @@
           </a>
           <a
             class="contact-card"
-            href="https://wa.me/6238378703"
+            href="https://wa.me/916238378703"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -1173,7 +1176,7 @@
                         <i class="fab fa-whatsapp"></i>
                     </div>
                     <h3>WhatsApp</h3>
-            <p>916238378703</p>
+            <p>+91-6238378703</p>
                 </a>
             </div>
         </div>
