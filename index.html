@@ -394,7 +394,7 @@
       }
 
       .collection-item:nth-child(even) {
-        flex-direction: row-reverse; /* Alternate: image left, text right */
+        flex-direction: row; /* Keep image left, text right everywhere */
       }
 
       .collection-content {
@@ -692,15 +692,16 @@
           padding: 50px 0;
         }
 
-        /* Collection item responsive */
+        /* Collections: keep side-by-side, scale halves */
         .collection-item,
         .collection-item:nth-child(even) {
-          flex-direction: column;
+          flex-direction: row;
         }
 
         .collection-content,
         .collection-image {
-          width: 100%;
+          width: 50%;
+          flex: 0 0 50%;
         }
 
         .collection-image {
@@ -770,35 +771,37 @@
           font-size: 15px;
         }
 
-        /* Collections: stack image top, text below */
+        /* Collections: keep side-by-side on mobile too */
         .collection-item,
         .collection-item:nth-child(even) {
-          flex-direction: column;
+          flex-direction: row;
         }
 
         .collection-content,
         .collection-image {
-          width: 100%;
+          width: 50%;
+          flex: 0 0 50%;
         }
 
         .collection-content {
-          padding: 20px;
-          text-align: center;
-          align-items: center;
+          padding: 16px;
+          text-align: left;
+          align-items: flex-start;
           justify-content: center;
-          gap: 12px;
+          gap: 10px;
         }
 
         .collection-image {
-          height: 350px;
+          height: auto;
         }
 
+        /* Downscale typography for collections on small screens */
         .collection-content h3 {
-          font-size: 72px;
+          font-size: 26px;
         }
 
         .collection-content p {
-          font-size: 44px;
+          font-size: 14px;
         }
 
         .collection-price {
