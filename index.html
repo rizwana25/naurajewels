@@ -385,15 +385,20 @@
 
         /* Individual collection layout */
         .collection-item {
-            display: flex;
-        align-items: stretch;
-        margin-bottom: 50px;
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        }
-        
+    display: flex;
+    align-items: stretch; /* Ensures all items stretch to the same height */
+    margin-bottom: 50px;
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.collection-image img {
+    width: 100%;
+    height: 100%; /* Ensures images fill the container */
+    object-fit: cover; /* Maintains aspect ratio while covering the area */
+}
         .collection-item:nth-child(even) {
         flex-direction: row; /* Keep image left, text right everywhere */
         }
@@ -412,13 +417,6 @@
         background: var(--white);
         }
         
-        .collection-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        display: block;
-        }
         
         .collection-item:hover .collection-image img {
         transform: none;
@@ -1103,6 +1101,51 @@
                 </div>
                 <div class="collection-image">
             <img src="pic4.jpg" alt="Royal Heritage Collection" />
+                </div>
+            </div>
+            
+            <!-- Fixed the last two collections to match the structure -->
+            <div class="collection-item">
+                <div class="collection-content">
+                    <h3>Kundan Bridal Set</h3>
+                    <p>
+                        Elegance meets timeless tradition
+                    </p>
+                    <p>
+                        This exquisite Kundan set is crafted with timeless elegance, perfect for adding royal charm to your special day
+                    </p>
+                    <a
+                      href="https://wa.me/919605474564?text=Hi,+I+am+interested+in+the+Kundan+Bridal+Set!"
+                      target="_blank"
+                      class="btn"
+                    >
+                      View Details
+                    </a>
+                </div>
+                <div class="collection-image">
+                    <img src="pic5.jpg" alt="Kundan Bridal Set" />
+                </div>
+            </div>
+            
+            <div class="collection-item">
+                <div class="collection-content">
+                    <h3>Kundan Bridal Set</h3>
+                    <p>
+                        A symphony of shimmer and grace—this bridal set, adorned with kunthan stones, is crafted to elevate your moment of radiance. 
+                    </p>
+                    <p>
+                        For the queen who shines in her own light
+                    </p>
+                    <a
+                      href="https://wa.me/919605474564?text=Hi,+I+am+interested+in+the+Kundan+Bridal+Set!"
+                      target="_blank"
+                      class="btn"
+                    >
+                      View Details
+                    </a>
+                </div>
+                <div class="collection-image">
+                    <img src="pic6.jpg" alt="Kunthan Bridal Set" />
                 </div>
             </div>
         </div>
